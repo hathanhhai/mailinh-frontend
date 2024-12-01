@@ -13,5 +13,5 @@ ENV VUE_APP_EXAMPLE=$VUE_APP_EXAMPLE
 COPY . . 
 
 # RUN npm run build
-EXPOSE 2075
+EXPOSE 2079
 CMD [ "http-server", "dist" ]
