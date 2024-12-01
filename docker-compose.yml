@@ -10,7 +10,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - "2072:2072"
+      - "2075:2075"
     volumes:
       - /hthai/jenkins_data/workspace/mailinh-vuong/mailinh-frondend:/frontend
 
