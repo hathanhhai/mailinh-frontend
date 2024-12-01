@@ -13,7 +13,7 @@ pipeline {
         stage('Docker Build and Deploy Production'){
             steps{
                  sh 'docker rm -f mailinh_frontend &> /dev/null'
-                 sh 'docker compose -f docker-compose.yml -p   up --build -d --force-recreate'
+                 sh 'docker compose -f docker-compose.yml -p mailinh_frontend up --build -d --force-recreate'
                  sh 'docker exec  mailinh_frontend sh -c "npm install && npm run build"'
                  sh 'docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
             }
