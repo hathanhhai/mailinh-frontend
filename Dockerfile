@@ -10,7 +10,7 @@ ENV VUE_APP_EXAMPLE=$VUE_APP_EXAMPLE
 
 
 
-COPY ./frontend . 
+COPY . . 
 
 # RUN npm run build
 EXPOSE 2070
