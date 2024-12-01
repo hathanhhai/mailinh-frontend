@@ -11,7 +11,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "2075:2075"
-    # volumes:
-      # - /hthai/jenkins_data/workspace/mailinh-vuong/mailinh-frondend:/frontend
+    volumes:
+      - /hthai/jenkins_data/workspace/mailinh-frontend:/frontend
 
 
