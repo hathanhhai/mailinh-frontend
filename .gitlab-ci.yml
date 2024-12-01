@@ -1,0 +1,70 @@
+stages:
+  - deploy
+
+variables:
+  GIT_STRATEGY: none
+
+develop:
+  stage: deploy
+  environment:
+    name: Develop
+  only:
+    - develop
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'  # Install SSH agent if not installed
+    - eval $(ssh-agent -s)  # Start the SSH agent
+    - echo "Checking if SSH key is loaded properly..."
+    - echo "$SSH_DEV_BASE64_KEY" | base64 -d | tr -d '\r' | ssh-add -  # Decode and add SSH key
+    - mkdir -p ~/.ssh
+    - 'echo -e "Host $SSH_DEV_SERVER\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n" > ~/.ssh/config'  # SSH config to avoid host checking
+  script:
+    - ssh -T $SSH_DEV_USER@$SSH_DEV_SERVER -p $SSH_DEV_PORT 'cd /home/develop-htmltool.longtu.club/public_html && git reset --hard HEAD && git pull origin develop -f && npm install && npm run build:test'  # Test SSH connection
+
+# staging:
+#   stage: deploy
+#   environment:
+#     name: Staging
+#   only:
+#     - staging
+#   before_script:
+#     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'  # Install SSH agent if not installed
+#     - eval $(ssh-agent -s)  # Start the SSH agent
+#     - echo "Checking if SSH key is loaded properly..."
+#     - echo "$SSH_STAGING_BASE64_KEY" | base64 -d | tr -d '\r' | ssh-add -  # Decode and add SSH key
+#     - mkdir -p ~/.ssh
+#     - 'echo -e "Host $SSH_STAGING_SERVER\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n" > ~/.ssh/config'  # SSH config to avoid host checking
+#     - 'echo -e "Host $SSH_STAGING_SERVER01\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n" > ~/.ssh/config'  # SSH config to avoid host checking
+#   script:
+#     - ssh -T $SSH_STAGING_USER@$SSH_STAGING_SERVER01 -p $SSH_STAGING_PORT 'cd /home/source/system-check-domain_staging/admin/public_html && git reset --hard HEAD && git pull origin staging -f && npm install && npm run build:stg'  # Test SSH connection
+
+production:
+  stage: deploy
+  environment:
+    name: production
+  only:
+    - release-v0.0.3
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'  # Install SSH agent if not installed
+    - apt-get install -y unzip
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - ./aws/install
+    - eval $(ssh-agent -s)  # Start the SSH agent
+    - echo "Checking if SSH key is loaded properly..."
+    - echo "$SSH_PRODUCTION_BASE64_KEY" | base64 -d | tr -d '\r' | ssh-add -  # Decode and add SSH key
+    - mkdir -p ~/.ssh
+    - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n" > ~/.ssh/config'  # SSH config to avoid host checking
+  script:
+    - echo "Configuring AWS CLI with environment variables"
+    - mkdir -p ~/.aws
+    - echo "[default]" > ~/.aws/credentials
+    - echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+    - echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+    - echo "[default]" > ~/.aws/config
+    - echo "region = $AWS_DEFAULT_REGION" >> ~/.aws/config
+    - echo "Fetching instance IDs"
+    - instance_ids=$(aws elbv2 describe-target-health --target-group-arn $TARGET_GROUP_ARN --query 'TargetHealthDescriptions[*].Target.Id' --output text)
+    - public_ips=$(aws ec2 describe-instances --instance-ids $instance_ids --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+    - echo "Starting SSH connections"
+    - for ip in $public_ips; do ssh -T $SSH_PRODUCTION_USER@$ip -p $SSH_PRODUCTION_PORT 'source ~/.nvm/nvm.sh && cd /home/source/landing-page-builder_production/admin/public_html && git reset --hard HEAD && git pull origin release-v0.0.3 -f && npm install && npm run build:prod'; done
+

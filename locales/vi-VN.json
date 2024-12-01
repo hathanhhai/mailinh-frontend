@@ -1,0 +1,188 @@
+{
+  "$schema": "./_schema.json",
+  "locale": "Tiếng Việt",
+  "welcome": "Chào mừng",
+  "Quản lý từ khóa": "Quản lý Từ Khoá",
+  "Quản lý nội dung": "Quản lý Nội Dung",
+  "Quản lý Thương Hiệu": "Quản lý Thương Hiệu",
+  "Quản lý Ngành": "Quản lý Ngành",
+  "Quản lý trang mẫu": "Quản lý trang mẫu",
+  "Quản lý trang nguồn": "Quản lý trang nguồn",
+  "Quản lý trang đích": "Quản lý trang đích",
+  "Quản lý hoạt động": "Quản lý hoạt động",
+  "buttons": {
+    "save": "Lưu",
+    "confirm": "Xác nhận",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "add": "Thêm",
+    "create": "Tạo mới",
+    "createKeyword": "Tạo từ khóa mới",
+    "next_step": "Tiếp theo",
+    "search": "Tìm kiếm",
+    "clear": "Clear",
+    "close": "Đóng",
+    "dowload": "Tải về",
+    "excel": "Export Excel",
+    "import": "Import Excel",
+    "view_template": "Xem mẫu",
+    "view_json": "Xem Dữ Liệu",
+    "create_page": "Tạo Trang",
+    "history": "Xem lịch sử",
+    "createPage": "Tạo từ khóa",
+    "create_domain": "Tạo trang nguồn",
+    "start": "Bắt đầu",
+    "submit": "Xác nhận"
+  },
+  "menus": {
+    "home": "Trang chủ",
+    "page_1": {
+      "root": "Trang 1",
+      "list": "Danh sách dữ liệu"
+    },
+    "users": {
+      "root": "Người dùng",
+      "list": "Danh sách người dùng"
+    },
+    "keywords": {
+      "root": "Quản lý Từ khóa",
+      "list": "Danh sách Từ khóa"
+    },
+    "reports": {
+      "title": "Lịch sử",
+      "history-domain-checks": {
+        "root": "Kiểm tra website",
+        "list": "Danh sách kiểm tra website"
+      },
+      "history-domain-records": {
+        "root": "Quay chụp website",
+        "list": "Danh sách quay chụp website"
+      }
+    },
+    "manuals": {
+      "check-website": {
+        "root": "Kiểm tra website",
+        "list": "Danh sách kiểm tra website"
+      },
+      "record-website": {
+        "root": "Quay chụp website",
+        "list": "Danh sách quay chụp website"
+      },
+      "report": {
+        "root": "Report",
+        "list": "Danh sách report"
+      }
+    },
+    "file_management": "Tạo trang HTML",
+    "google_management": "Tài khoản google"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Mật khẩu",
+    "login": "Đăng nhập",
+    "signin": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "profile": "Thông tin",
+    "id": "ID",
+    "role": "Vai trò",
+    "name": "Tên",
+    "created_at": "Ngày tạo",
+    "change_password": "Đổi mật khẩu",
+    "current_password": "Mật khẩu cũ",
+    "new_password": "Mật khẩu mới",
+    "confirm_password": "Nhập lại",
+    "confirm_password_not_same": "Mật khẩu không giống nhau"
+  },
+  "rules": {
+    "required": "{field} không được để trống",
+    "min": "{field} phải có ít nhất {value} ký tự",
+    "max": "{field} không được vượt quá {value} ký tự",
+    "email": "Email không đúng định dạng",
+    "phone": "{field} không đúng định dạng số điện thoại",
+    "number": "{field} phải là số",
+    "integer": "{field} phải là số nguyên",
+    "float": "{field} phải là số thực",
+    "array": "{field} phải là mảng",
+    "object": "{field} phải là đối tượng",
+    "date": "{field} không đúng định dạng ngày tháng",
+    "min_value": "{field} không được nhỏ hơn {value}",
+    "max_value": "{field} không được lớn hơn {value}",
+    "min_length": "{field} không được ít hơn {value} ký tự",
+    "max_length": "{field} không được nhiều hơn {value} ký tự",
+    "regex": "{field} không đúng định dạng",
+    "unique": "{field} đã tồn tại",
+    "confirmed": "{field} không khớp",
+    "not_in": "{field} không hợp lệ"
+  },
+  "errors": {
+    "error": "Có lỗi xảy ra"
+  },
+  "messages": {
+    "copy_not_supported": "Trình duyệt không hỗ trợ sao chép",
+    "copied": "Đã sao chép",
+    "copy_failed": "Sao chép thất bại"
+  },
+  "pages": {
+    "users": {
+      "title": {
+        "root": "Người dùng",
+        "list": "Danh sách người dùng",
+        "describe": "Dữ liệu thay đổi"
+      },
+      "table": {
+        "id": "ID",
+        "name": "Tên",
+        "email": "Email",
+        "username": "Username",
+        "role": "Vai trò",
+        "is_active": "Trạng thái",
+        "created_at": "Ngày tạo",
+        "updated_at": "Ngày cập nhật",
+        "last_login": "Truy cập gần nhất"
+      }
+    },
+    "keywords": {
+      "title": {
+        "root": "Quản lý từ khóa",
+        "list": "Danh sách từ khóa",
+        "tooltip": "Tạo và quản lý từ khóa"
+      },
+      "table": {
+        "id": "ID",
+        "name": "Từ khóa",
+        "domain_total": "Tổng tên miền",
+        "run_daily": "Chạy hằng ngày",
+        "status": "Trạng thái",
+        "tags": "Thẻ",
+        "action": "Hành động",
+        "created_at": "Ngày tạo",
+        "created_user": "Người tạo",
+        "updated_at": "Ngày cập nhật",
+        "brand": "Thương hiệu",
+        "group": "Ngành",
+        "operation": "Thao Tác",
+        "keyword": "Từ khóa"
+      },
+      "search": {
+        "name": "Từ khóa",
+        "status": "Trạng thái",
+        "created_at_from": "Ngày tạo từ",
+        "created_at_to": "Ngày tạo đến",
+        "created_user": "Người tạo"
+      },
+      "status": {
+        "yes": "Hoạt động",
+        "no": "Tạm dừng"
+      }
+    }
+  },
+  "domain": {
+    "active": "Hoạt động",
+    "redirect": "Chuyển hướng"
+  },
+  "config": {
+    "input_name": "Cài đặt",
+    "name": "Cài đặt"
+  }
+}

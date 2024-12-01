@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+
+  
+  frondend:
+    image: mailinh_backend/backend
+    container_name: mailinh_backend
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "2072:2072"
+    volumes:
+      # - /hthai/jenkins_data/workspace/mailinh-vuong:/backend
+      # - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+
+

@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@import './naive/index';
+
+body {
+  transition:
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s !important;
+  font-family:
+    Inter,
+    v-sans,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol' !important;
+}
+
+.n-card > .n-card-header {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid rgba(220, 223, 230, 1);
+}
+
+.n-card > .n-card__content {
+  padding-top: 20px !important;
+}
+
+.text-center {
+  text-align: center;
+}
